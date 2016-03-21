@@ -9,7 +9,7 @@
 "   0.4 - updates and fixes to cDelimiter to fix break with foldmethod=syntax,
 "         entirely suggested and solved by Ivan Freitas
 "         <ivansichfreitas@gmail.com>
-"   0.3 - updates and fixes to cUserFunctionPointer, thanks to 
+"   0.3 - updates and fixes to cUserFunctionPointer, thanks to
 "         Alexei <lxmzhv@gmail.com>
 "   0.2 - change [] to operator
 "   0.1 - initial upload, modification from vimscript#1201, Extended c.vim
@@ -248,6 +248,15 @@ syn match cOperator	"/$"
 syn match cOperator "&&\|||"
 syn match cOperator	"[][]"
 
+" Types
+syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*;\)\@=" contains=cReturn " TYPE name;
+syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*=\)\@=" contains=cReturn " TYPE name = something;
+syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*(\(.*\n*\)*)\)\@=" contains=cReturn " TYPE function();
+"syn match cType ""
+syn match cReturn 'return' contains=cType
+hi def link cReturn Statement
+" syn match cType	"for\s*\n*\s*(\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\)\@="
+
 " Preprocs
 syn keyword cDefined defined contained containedin=cDefine
 hi def link cDefined cDefine
@@ -276,4 +285,5 @@ hi def link cDelimiter Delimiter
 " foldmethod=syntax fix, courtesy of Ivan Freitas
 hi def link cBraces Delimiter
 hi def link cBoolean Boolean
+hi def link cType Type
 
