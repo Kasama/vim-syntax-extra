@@ -249,9 +249,10 @@ syn match cOperator "&&\|||"
 syn match cOperator	"[][]"
 
 " Types
-syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*;\)\@=" contains=cReturn " TYPE name;
-syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*=\)\@=" contains=cReturn " TYPE name = something;
+syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*\s*;\)\@=" contains=cReturn " TYPE name;
+syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*\s*=\)\@=" contains=cReturn " TYPE name = something;
 syn match cType	"^\s*\<\h\w*\>\(\s*\**\s*\<\h\w*\>\s*\n*(\(.*\n*\)*)\)\@=" contains=cReturn " TYPE function();
+syn match cType "[(,]\@<=\s*\<\h\w*\>\(\s*\n*\s*\**\s*\n*\s*\<\h\w*\>[),]\)\@=" contains=cReturn " function(TYPE var, TYPE var2);
 "syn match cType ""
 syn match cReturn 'return' contains=cType
 hi def link cReturn Statement
